@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4">
+            <div class="card h-100">
+                 <img src="{{url_for('static',filename = product[4])}}" class="card-img-top product-image" alt="{{ product.name }}" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImageinModal(this.src)">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product[1]}}</h5>
+                    <p class="card-text">Price: {{ product[3] }} per {{ product.unit }}</p>
+                    <button type="button" class="btn btn-primary add-item" onclick="addItemToCart('{{ product[3] }}')">Add Item</button>
+                    <!-- Other button elements -->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% include 'modals/image_modal.html' %}
+    <!-- Total Cost Display -->
+    <div class="text-end mt-4">
+        <h3>Total Cost: <span id="totalCost">0</span> Pesos</h3>
+    </div>
+</div>
+{% endblock %}
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>

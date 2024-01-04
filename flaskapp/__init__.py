@@ -8,6 +8,6 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'raymark_kiosk'
 
-mssql = MySQL(app)
+mysql = MySQL(app)
 
 from flaskapp import routes
