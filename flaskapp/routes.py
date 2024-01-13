@@ -1,9 +1,18 @@
 from flaskapp import app, mysql
 from flask import jsonify, render_template, request
 
+# @app.route('/')
+# def index():
+#     return render_template('index.html')
+
 @app.route('/')
 def index():
-    return render_template('index.html')
+       cursor = mysql.connection.cursor()
+       cursor.execute("SELECT * FROM products")  # Assuming 'products' is your table name
+       products = cursor.fetchall()
+       print(products)
+       cursor.close()
+       return render_template('index.html', products=products)
 
 # from flaskapp import app, mysql
 # from flask import jsonify
