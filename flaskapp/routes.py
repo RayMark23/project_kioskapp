@@ -84,4 +84,11 @@ def orders():
     cursor.execute(sql)
     orders_data = cursor.fetchall()
     cursor.close()
+
+    formatted_orders_data = []
+    for order in orders_data:
+         formatted_order_date = order[1].strftime('%B %d, %Y at %I:%M:%S %p')
+         formatted_order = order[:1] + (formatted_order_date,) + order[2:]
+         formatted_orders_data.append(formatted_order)
+         
     return render_template('orders.html', orders_data=orders_data)

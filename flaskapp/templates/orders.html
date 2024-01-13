@@ -10,9 +10,6 @@
         <th scope="col">Order Total Price</th>
         <th scope="col">Product Name</th>
         <th scope="col">Quantity</th>
-        <th scope="col">Item Price</th>
-        <th scope="col">Price Per Unit</th>
-        <th scope="col">Unit</th>
         <th scope="col">Product Image</th>
       </tr>
     </thead>
@@ -24,13 +21,10 @@
         <td>{{ order[2] }}</td>
         <td>{{ order[3] }}</td>
         <td>{{ order[4] }}</td>
-        <td>{{ order[8] }}</td>
-        <td>{{ order[9] }}</td>
-        <td>{{ order[5] }}</td>
-        <td>{{ order[6] }}</td>
+        <td>{{ order[7] }}</td>
         <td>
           <img
-            src="{{ order[7] }}"
+            src="{{url_for('static',filename = order[6])}}"
             alt="Product Image"
             class="img-fluid"
             style="max-width: 100px"
