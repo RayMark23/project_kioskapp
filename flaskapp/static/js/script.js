@@ -17,6 +17,7 @@ function showImageinModal(imageUrl) {
 // modal for order
 function setupModal(button) {
   const orderModal = document.getElementById("orderModal");
+  const productIdInput = orderModal.querySelector("#productId");
   const productNameInput = orderModal.querySelector("#productName");
   const quantityInput = orderModal.querySelector("#quantity");
   const totalPriceInput = orderModal.querySelector("#totalPrice");
@@ -24,10 +25,12 @@ function setupModal(button) {
 
   productNameInput.value = button.dataset.name;
   productImage.src = button.dataset.image;
+  productIdInput.value = button.dataset.id;
   const price = parseFloat(button.dataset.price);
   const unit = button.dataset.unit;
-  quantityInput.value = unit === "kg" ? "1.0" : "1";
-  quantityInput.step = unit === "kg" ? "0.01" : "1";
+  quantityInput.value = "1"; // Default value for both kg and pc
+  quantityInput.min = unit === "kg" ? "0.01" : "1"; // Minimum value based on unit
+  quantityInput.step = unit === "kg" ? "0.01" : "1"; // Step value based on unit
   totalPriceInput.value = price.toFixed(2);
 
   quantityInput.oninput = () => {
