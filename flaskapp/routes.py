@@ -1,10 +1,6 @@
 from flaskapp import app, mysql
 from flask import jsonify, redirect, render_template, request, session
 
-# @app.route('/')
-# def index():
-#     return render_template('index.html')
-
 @app.route('/')
 def index():
        cursor = mysql.connection.cursor()
@@ -14,18 +10,7 @@ def index():
        cursor.close()
        return render_template('index.html', products=products)
 
-# from flaskapp import app, mysql
-# from flask import jsonify
-
-# @app.route('/testconnection')
-# def test_connection():
-#     try:
-#         cursor = mysql.connection.cursor()
-#         cursor.execute("SELECT 1")
-#         return jsonify({"status": "Connected to the database"})
-#     except Exception as e:
-#         return jsonify({"status": "Connection failed", "error": str(e)})
-
+# Orders
 # Orders
 @app.route('/submit_order', methods=['POST'])
 def submit_order():
@@ -33,7 +18,7 @@ def submit_order():
     
     try:
         # Extract data from the form
-        product_id = int(request.form['productId'])
+        product_id = int(request.form['productId'])  
         quantity = float(request.form['quantity'])
         total_price = float(request.form['totalPrice'])
         mobile_number = request.form['mobileNumber']
@@ -60,7 +45,6 @@ def submit_order():
     finally:
         # Close the cursor
         cursor.close()
-
         # Display orders
 @app.route('/orders')
 def orders():
