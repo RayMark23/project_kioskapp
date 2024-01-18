@@ -6,7 +6,7 @@
       <div class="card h-100">
         <img
           src="{{url_for('static',filename = product[4])}}"
-          class="card-img-top product-image"
+          class="card-img-top h-100 product-image"
           alt="{{ product.name }}"
           data-bs-toggle="modal"
           data-bs-target="#imageModal"
@@ -14,9 +14,7 @@
         />
         <div class="card-body">
           <h5 class="card-title">{{ product[1]}}</h5>
-          <p class="card-text">
-            Price: {{ product[3] }} per {{ product.unit }}
-          </p>
+          <p class="card-text">Price: {{ product[3] }} per {{ product[2] }}</p>
           <button
             type="button"
             class="btn btn-dark add-item"
@@ -43,11 +41,18 @@
     </div>
     {% endfor %}
   </div>
-  {% include 'modals/image_modal.html' %}
+  {% include 'modals/image_modal.html' %} {% include 'modals/order_modal.html'
+  %}
   <!-- Total Cost Display -->
   <div class="text-end mt-4">
     <h3>Total Cost: <span id="totalCost">0</span> Pesos</h3>
   </div>
 </div>
-{% endblock %}
+{% if session.pop('order_submitted', None) %}
+<script>
+  window.onload = function () {
+    alert("Order successfully saved.");
+  };
+</script>
+{% endif %} {% endblock %}
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
