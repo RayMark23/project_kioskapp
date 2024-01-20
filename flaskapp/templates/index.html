@@ -3,18 +3,18 @@
   <div class="row">
     {% for product in products %}
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4">
-      <div class="card h-100">
+      <div class="card border border-white h-100">
         <img
           src="{{url_for('static',filename = product[4])}}"
-          class="card-img-top h-100 product-image"
+          class="card-img-top rounded-circle border border-warning-subtle shadow-lg p-3 mb-5 bg-body-tertiary rounded h-100 product-image"
           alt="{{ product.name }}"
           data-bs-toggle="modal"
           data-bs-target="#imageModal"
           onclick="showImageinModal(this.src)"
         />
-        <div class="card-body">
+        <div class="card-body shadow-lg p-3 mb-5 bg-body-tertiary rounded">
           <h5 class="card-title">{{ product[1]}}</h5>
-          <p class="card-text">Price: {{ product[3] }} per {{ product[2] }}</p>
+          <p class="card-text text-secondary-emphasis">Price: <span class="text-danger">{{ product[3] }}</span> per {{ product[2] }}</p>
           <button
             type="button"
             class="btn btn-dark add-item"
@@ -45,9 +45,6 @@
   {% include 'modals/image_modal.html' %} {% include 'modals/order_modal.html'
   %}
   <!-- Total Cost Display -->
-  <div class="text-end mt-4">
-    <h3>Total Cost: <span id="totalCost">0</span> Pesos</h3>
-  </div>
 </div>
 {% if session.pop('order_submitted', None) %}
 <script>
